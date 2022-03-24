@@ -4,54 +4,42 @@ import {
   Switch,
   Route,
   Link,
+  useParams
 } from "react-router-dom";
 
-export default function BasicExample(){
+export default function ParamsExample(){
   return(
     <Router>
       <div>
+        <h2>Accounts</h2>
         <ul>
           <li>
-            <Link to="/">Home</Link>
+            <Link to="/netflix">Netflix</Link>
           </li>
           <li>
-            <Link to="/about">About</Link>
+            <Link to="/gmail">Gmail</Link>
           </li>
           <li>
-            <Link to="/dashboard">Dashboard</Link>
+            <Link to="/yahoo">Yahoo</Link>
+          </li>
+          <li>
+            <Link to="/amazon">Amazoon</Link>
           </li>
         </ul>
         <Switch>
-        <Route exact path="/"><Home /></Route>
-        <Route path="/about"><About /></Route>
-        <Route path="/dashboard"><Dashboard /></Route>
+        <Route path="/:id" children ={<Child />} />
         </Switch>
       </div>
     </Router>
   );
 }
 
-function Home(){
-  return(
-    <div>
-      <h2>home</h2>
-    </div>
-  );
-}
+function Child(){
+  let { id } = useParams();
 
-function About(){
   return(
     <div>
-      <h2>About</h2>
+      <h3>ID: {id}</h3>
     </div>
   );
 }
-
-function Dashboard(){
-  return(
-    <div>
-      <h2>Dashboard</h2>
-    </div>
-  );
-}
- 
